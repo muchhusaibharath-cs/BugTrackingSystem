@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -37,13 +36,27 @@
             cursor: pointer;
         }
         a { color: #243b55; }
+        .error {
+            color: red;
+            background: #ffe6e6;
+            padding: 10px;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
     <div class="login-box">
         <h2>User Login</h2>
 
-        <form action="login" method="post">
+        <% if (request.getAttribute("error") != null) { %>
+            <p class="error">
+                Invalid email or password!
+            </p>
+        <% } %>
+
+        <form action="<%= request.getContextPath() %>/login"
+              method="post">
+
             <input type="email" name="email"
                    placeholder="Enter Email" required>
 
